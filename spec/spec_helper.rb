@@ -25,3 +25,17 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 end
+
+# Taken from 
+# http://wincent.com/knowledge-base/Fixtures_considered_harmful%3F
+class Hash
+  # for excluding keys
+  def except(*exclusions)
+    self.reject { |key, value| exclusions.include? key.to_sym }
+  end
+
+  # for overriding keys
+  def with(overrides = {})
+    self.merge overrides
+  end
+end
