@@ -1,0 +1,5 @@
+.gitattributes export-ignore
+.gitignore export-ignore
+/config/environments/development.rb export-ignore
+/config/environments/test.rb export-ignore
+/public/dispatch.* export-ignore
