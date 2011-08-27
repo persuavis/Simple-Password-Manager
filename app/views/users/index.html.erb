@@ -15,8 +15,8 @@
   <tr>
     <td><%= user.username %></td>
     <td><%= user.email %></td>
-    <td><%= user.encrypted_password %></td>
-    <td><%= user.salt %></td>
+    <td><%= truncate user.encrypted_password %></td>
+    <td><%= truncate user.salt %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
