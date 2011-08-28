@@ -54,3 +54,20 @@ div.field, div.actions {
   font-size: 12px;
   list-style: square;
 }
+
+body {margin-left: auto;margin-right: auto;}
+body {background-color:#87BDFE;}
+
+#flashes {margin:20px 50px;}
+#flashes div {padding:20px;}
+div.error {background-color:#FB2124;border:1px solid black;}
+div.warn {background-color:#FF8D00;border:1px solid black;}
+div.alert {background-color:#B05FA1;border:1px solid black;}
+div.notice {background-color:#36C132;border:1px solid black;}
+
+#yield {padding:50px;}
+xxx#yield {outline:1px solid red;background-color:#87BDFE;}
+
+table th {text-align:center;}
+table td.role {text-align:center;}
+
