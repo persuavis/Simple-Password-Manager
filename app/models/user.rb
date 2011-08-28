@@ -22,6 +22,11 @@ class User < ActiveRecord::Base
     @password
   end
   
+  def has_role(role)
+    return nil if self.roles.nil?
+    self.roles.collect{|r|r.id}.include? role.id
+  end
+  
 private
 
   def self.encrypt_number(number, salt) 

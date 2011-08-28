@@ -7,13 +7,15 @@ describe "access/users.html.erb" do
         :username => "Username",
         :email => "Email",
         :encrypted_password => "Encrypted Password",
-        :salt => "Salt"
+        :salt => "Salt",
+        :has_role => true # to avoid accessing the database
       ),
       stub_model(User,
         :username => "Username",
         :email => "Email",
         :encrypted_password => "Encrypted Password",
-        :salt => "Salt"
+        :salt => "Salt",
+        :has_role => true # to avoid accessing the database
       )
     ])
     assign(:roles, [
@@ -28,7 +30,7 @@ describe "access/users.html.erb" do
       ])
   end
 
-  it "renders a list of users" do
+  it "renders a list of users with their roles" do
     render
     assert_select "tr>th", :text => "Username".to_s, :count => 1
     assert_select "tr>th", :text => "Email".to_s, :count => 1
@@ -42,5 +44,7 @@ describe "access/users.html.erb" do
     assert_select "tr>td", :text => "Encrypted Password".to_s, :count => 0
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "tr>td", :text => "Salt".to_s, :count => 0
+    assert_select "tr>td", :text => "y".to_s, :count => 4
+    assert_select "tr>td", :text => "n".to_s, :count => 0
   end
 end
