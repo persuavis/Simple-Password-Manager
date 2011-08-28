@@ -23,6 +23,7 @@
 			  <% end %>
 			<% end %>
 	    <td><%= link_to 'Change password', access_change_password_path(:id => user.id) %></td>
+	    <td><%= link_to 'Change roles', access_change_roles_path(:id => user.id) %></td>
 	  </tr>
 	<% end %>
 	</table>

@@ -21,7 +21,27 @@ class AccessController < ApplicationController
         flash[:alert] = "old password doesn't match"
         render
       end
-    else
+    end
+  end
+  
+  def change_roles
+    @user = User.find(params[:id])
+    @roles = Role.all
+    if request.put?
+      params[:user][:role_ids] ||= []
+      @admin = User.find_by_username(params[:user][:admin_username])
+      if !@admin.nil? && @admin.authenticate?(params[:user][:admin_password])
+        @user.role_ids = params[:user][:role_ids]
+        if @user.save
+          redirect_to url_for(access_users_path), :notice => "roles have been changed"
+        else
+          flash[:alert] = "new roles cannot be saved"
+          render
+        end
+      else
+        flash[:alert] = "You are not authorized to make these changes"
+        render
+      end
     end
   end
 

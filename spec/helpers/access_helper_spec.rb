@@ -11,5 +11,10 @@ require 'spec_helper'
 #   end
 # end
 describe AccessHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "put checkmarks" do
+    it "returns the appropriate checkmark" do
+      helper.checkmark(true, "true", "false").should == "true"
+      helper.checkmark(false, "true", "false").should == "false"
+    end
+  end
 end

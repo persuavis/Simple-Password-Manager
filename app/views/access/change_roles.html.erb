@@ -1,0 +1,52 @@
+<div id="access-change_roles">
+	<h1>Change Roles</h1>
+	<p>CAUTION: you must have admin privileges to change roles</p>
+	<h2>Changing roles for user: <%= @user.username %></h2>
+	<%= form_for(@user, :url => {:action => 'change_roles'}) do |f| %>
+	  <% if @user.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+	      <ul>
+	      <% @user.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+
+		<%= hidden_field_tag :id, @user.id %>
+		
+	  <div class="field">
+	    <%= f.label :admin_username, 'Admin username:'%><br />
+	    <%= f.text_field :admin_username %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :admin_password, 'Admin password:'%><br />
+	    <%= f.password_field :admin_password %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :roles, 'User roles' %><br />
+	    <%#= f.password_field :password %>
+			<% if !@roles.blank? %>
+			  <% @roles.each do |role| %>
+					<div>
+			    	<%= check_box_tag 'user[role_ids][]', role.id, @user.roles.include?(role) %>
+						<%= role.rolename %>
+					</div>
+			  <% end %>
+			<% else %>
+			  <p>There are no roles to select from</p>
+			<% end %>
+			
+	  </div>
+	  <div class="actions">
+	    <%= f.submit %>
+	  </div>
+	<% end %>
+	
+	<br />
+	
+	<%= link_to 'Back to Users Table', access_users_path %>
+	
+</div>

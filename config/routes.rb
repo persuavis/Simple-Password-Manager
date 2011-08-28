@@ -4,6 +4,8 @@ SimplePasswordManager::Application.routes.draw do
 
   get "access/change_password"
   put "access/change_password"
+  get "access/change_roles"
+  put "access/change_roles"
 
   resources :roles
 

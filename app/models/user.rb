@@ -8,11 +8,10 @@ class User < ActiveRecord::Base
   validates_presence_of :salt
   
   attr_accessor :password, :old_password
+  attr_accessor :admin_username, :admin_password
   
   def password=(pwd)
     @password = pwd
-    $stdout.puts "password=(#{password})"
-    puts self.generate_salt.inspect
     if pwd.present?
       self.encrypted_password = self.class.encrypt_password(@password, self.generate_salt)
     else
