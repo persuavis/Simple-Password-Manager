@@ -17,8 +17,8 @@ describe "users/edit.html.erb" do
     assert_select "form", :action => users_path(@user), :method => "post" do
       assert_select "input#user_username", :name => "user[username]"
       assert_select "input#user_email", :name => "user[email]"
-      assert_select "input#user_encrypted_password", :name => "user[encrypted_password]"
-      assert_select "input#user_salt", :name => "user[salt]"
+      assert_select "input#user_password", :name => "user[password]"
+      assert_select "input#user_salt", :name => "user[salt]", :count => 0
     end
   end
 end

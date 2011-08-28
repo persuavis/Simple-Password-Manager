@@ -10,6 +10,7 @@ module UserSpecHelper
     }
   end
 end
+
 describe User, "with good attributes" do
   include UserSpecHelper
   #pending "add some examples to (or delete) #{__FILE__}"
