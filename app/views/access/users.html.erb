@@ -19,7 +19,7 @@
 	    <td><%= user.email %></td>
 			<% if !@roles.blank? %>
 			  <% @roles.each do |r| %>
-			    <td><%= checkmark(user.has_role(r), "y", "n") %></td>
+			    <td class='role'><%= checkmark(user.has_role(r), "y", "n") %></td>
 			  <% end %>
 			<% end %>
 	    <td><%= link_to 'Change password', access_change_password_path(:id => user.id) %></td>

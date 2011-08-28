@@ -7,12 +7,14 @@ class User < ActiveRecord::Base
   validates_presence_of :encrypted_password
   validates_presence_of :salt
   
-  attr_accessor :password
+  attr_accessor :password, :old_password
   
   def password=(pwd)
     @password = pwd
+    $stdout.puts "password=(#{password})"
+    puts self.generate_salt.inspect
     if pwd.present?
-      self.encrypted_password = self.class.encrypt_number(@password, generate_salt)
+      self.encrypted_password = self.class.encrypt_password(@password, self.generate_salt)
     else
       self.encrypted_password = nil
     end
@@ -27,14 +29,20 @@ class User < ActiveRecord::Base
     self.roles.collect{|r|r.id}.include? role.id
   end
   
-private
-
-  def self.encrypt_number(number, salt) 
-    Digest::SHA2.hexdigest(number + "spm1" + salt)
+  def authenticate?(new_password)
+    self.class.encrypt_password(new_password, self.salt) == self.encrypted_password
   end
-  
+
+protected
   def generate_salt
     self.salt = (self.object_id.to_s + rand.to_s) unless self.salt
+    self.salt
+  end
+
+private
+
+  def self.encrypt_password(password, salt) 
+    Digest::SHA2.hexdigest(password + "spm1" + salt)
   end
   
 end
