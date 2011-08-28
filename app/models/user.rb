@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   
+  has_and_belongs_to_many :roles
+  
   validates_presence_of :username
   validates_length_of :username, :minimum => 3
   validates_presence_of :encrypted_password
