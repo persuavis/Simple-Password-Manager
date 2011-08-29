@@ -6,13 +6,17 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-  username = "admin"
+  role = Role.create(:rolename => "admin", :description => "an admin can do anything")
+  role = Role.create(:rolename => "editor", :description => "an editor can write stuff")
+  role = Role.create(:rolename => "publisher", :description => "a publisher can publish stuff")
+  
+  username = "root" # user 'root' cannot be modified later
   chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
   password = ""
   1.upto(10) { |i| password << chars[rand(chars.size-1)] }
-  user = User.create(:username => username, :email => "admin@persuavis.com", :password => password)
-  user.roles << Role.new(:rolename => "admin", :description => "admin can do anything")
-  user.save!
+  user = User.new(:username => username, :email => "support@persuavis.com", :password => password)
+  user.roles << Role.find_by_rolename("admin")
+  user.save!(:validate => false)
 
   $stdout.puts "****************************************************************************************"    
   $stdout.puts "*** NOTICE: your username/password is: #{username}/#{password}"    

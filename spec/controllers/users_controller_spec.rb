@@ -76,7 +76,7 @@ describe UsersController do
 
       it "redirects to the created user" do
         post :create, :user => valid_attributes
-        response.should redirect_to(User.last)
+        response.should redirect_to(access_users_path) # User.last
       end
     end
 
@@ -118,7 +118,7 @@ describe UsersController do
       it "redirects to the user" do
         user = User.create! valid_attributes
         put :update, :id => user.id, :user => valid_attributes
-        response.should redirect_to(user)
+        response.should redirect_to(access_users_path) # user
       end
     end
 
@@ -152,7 +152,7 @@ describe UsersController do
     it "redirects to the users list" do
       user = User.create! valid_attributes
       delete :destroy, :id => user.id.to_s
-      response.should redirect_to(users_url)
+      response.should redirect_to(access_users_path) # users_url
     end
   end
 

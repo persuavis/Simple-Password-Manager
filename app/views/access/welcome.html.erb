@@ -1,0 +1,16 @@
+<h2>Welcome to the</h2>
+<h1>Simple Password Manager</h1>
+<p>Developed by Wim den Braven, <%= link_to 'Persuavis LLC', "http://www.persuavis.com", :target => "_blank" %></p>
+
+<h2>These are your main options</h2>
+<ul>
+	<li><%= link_to 'Add a new user', new_user_path %></li>
+	<li><%= link_to 'Add a new role', new_role_path %></li>
+	<li><%= link_to 'List all users and their roles', access_users_path %></li>
+</ul>
+
+<h2>On the <%= link_to 'List all users', access_users_path %> page you can also</h2>
+<ul>
+	<li>Change passwords</li>
+	<li>Change roles assigned to a user</li>
+</ul>

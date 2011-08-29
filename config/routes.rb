@@ -1,14 +1,13 @@
 SimplePasswordManager::Application.routes.draw do
   
+  get "access/welcome"
   get "access/users"
-
   get "access/change_password"
   put "access/change_password"
   get "access/change_roles"
   put "access/change_roles"
 
   resources :roles
-
   resources :users
 
   # The priority is based upon order of creation:
@@ -61,6 +60,7 @@ SimplePasswordManager::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => "welcome#index"
+  root :to => "access#welcome"
 
   # See how all your routes lay out with "rake routes"
 

@@ -1,5 +1,8 @@
 class AccessController < ApplicationController
   
+  def welcome
+  end
+  
   def users
     @users = User.includes(:roles).all
     @roles = Role.all
@@ -30,7 +33,7 @@ class AccessController < ApplicationController
     if request.put?
       params[:user][:role_ids] ||= []
       @admin = User.find_by_username(params[:user][:admin_username])
-      if !@admin.nil? && @admin.authenticate?(params[:user][:admin_password])
+      if !@admin.nil? && @admin.authenticate?(params[:user][:admin_password]) && @admin.is_admin?
         @user.role_ids = params[:user][:role_ids]
         if @user.save
           redirect_to url_for(access_users_path), :notice => "roles have been changed"

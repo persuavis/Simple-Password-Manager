@@ -22,14 +22,20 @@
 			    <td class='role'><%= checkmark(user.has_role(r), "y", "n") %></td>
 			  <% end %>
 			<% end %>
-	    <td><%= link_to 'Change password', access_change_password_path(:id => user.id) %></td>
-	    <td><%= link_to 'Change roles', access_change_roles_path(:id => user.id) %></td>
+			<% if user.username == "root" %>
+				<td></td>
+				<td></td>
+			<% else %>
+	    	<td><%= link_to 'Change password', access_change_password_path(:id => user.id) %></td>
+	    	<td><%= link_to 'Change roles', access_change_roles_path(:id => user.id) %></td>
+			<% end %>
 	  </tr>
 	<% end %>
 	</table>
 
 	<br />
 
-	<%= link_to 'New User', new_user_path %>
+	<%= link_to 'New User', new_user_path %> | 
+	<%= link_to 'New Role', new_role_path %>
 
 </div>

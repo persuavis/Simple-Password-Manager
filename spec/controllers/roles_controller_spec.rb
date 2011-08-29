@@ -76,7 +76,7 @@ describe RolesController do
 
       it "redirects to the created role" do
         post :create, :role => valid_attributes
-        response.should redirect_to(Role.last)
+        response.should redirect_to(access_users_path) # Role.last
       end
     end
 
@@ -118,7 +118,7 @@ describe RolesController do
       it "redirects to the role" do
         role = Role.create! valid_attributes
         put :update, :id => role.id, :role => valid_attributes
-        response.should redirect_to(role)
+        response.should redirect_to(access_users_path) # role
       end
     end
 
@@ -152,7 +152,7 @@ describe RolesController do
     it "redirects to the roles list" do
       role = Role.create! valid_attributes
       delete :destroy, :id => role.id.to_s
-      response.should redirect_to(roles_url)
+      response.should redirect_to(access_users_path) # roles_url
     end
   end
 
